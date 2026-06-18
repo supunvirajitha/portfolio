@@ -20,11 +20,19 @@ window.addEventListener("scroll", revealOnScroll);
 window.addEventListener("load", revealOnScroll);
 
 /* Better mobile touch animation */
+<<<<<<< HEAD
 const touchCards = document.querySelectorAll(
   ".project-card, .animated-paragraph, .skill-list span, .btn"
 );
 
 touchCards.forEach((item) => {
+=======
+const touchItems = document.querySelectorAll(
+  ".project-card, .animated-paragraph, .skill-list span, .btn"
+);
+
+touchItems.forEach((item) => {
+>>>>>>> 0ba7288 (update)
   item.addEventListener("touchstart", () => {
     item.classList.add("touch-active");
   });
@@ -35,3 +43,25 @@ touchCards.forEach((item) => {
     }, 300);
   });
 });
+<<<<<<< HEAD
+=======
+
+/* Smooth page link animation */
+const pageLinks = document.querySelectorAll("a[href$='.html']");
+
+pageLinks.forEach((link) => {
+  link.addEventListener("click", function (e) {
+    const target = this.getAttribute("href");
+
+    if (target && !target.startsWith("#")) {
+      e.preventDefault();
+
+      document.body.classList.add("fade-out");
+
+      setTimeout(() => {
+        window.location.href = target;
+      }, 350);
+    }
+  });
+});
+>>>>>>> 0ba7288 (update)

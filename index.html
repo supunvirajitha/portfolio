@@ -3,10 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<<<<<<< HEAD
 <script src="script.js"></script>
   <title>My Portfolio</title>
 
   <!-- Google Fonts -->
+=======
+  <title>Home | My Portfolio</title>
+
+>>>>>>> 0ba7288 (update)
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link 
@@ -18,7 +23,6 @@
 </head>
 <body>
 
-  <!-- Animated Background Elements -->
   <div class="background-animation">
     <span></span>
     <span></span>
@@ -26,237 +30,57 @@
     <span></span>
   </div>
 
-  <!-- Header -->
   <header>
     <nav>
       <h2 class="logo">My Portfolio</h2>
 
-      <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active-link">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="skills.html">Skills</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="contact.html">Contact</a></li>
       </ul>
     </nav>
   </header>
 
-  <!-- Hero Section -->
-  <section id="home" class="hero">
-    <div class="hero-text">
-      <p class="small-title">Welcome to my portfolio</p>
+  <main class="page-transition">
+    <section class="hero">
+      <div class="hero-text reveal-left">
+        <p class="small-title">Welcome to my portfolio</p>
 
+<<<<<<< HEAD
       <h1>Hello,</h1> 
         I'm <br><h1> <span>Supun Virajitha</span> </h1>
+=======
+        <h1>Hello, I'm <br><span>Supun Virajitha</span></h1>
+>>>>>>> 0ba7288 (update)
 
-      <p class="hero-paragraph">
-        I am an IT undergraduate and developer with experience in web development,
-        mobile application development, database systems, POS systems, and software projects.
-      </p>
-
-      <div class="hero-buttons">
-        <a href="#projects" class="btn primary-btn">View My Projects</a>
-        <a href="#contact" class="btn secondary-btn">Contact Me</a>
-      </div>
-    </div>
-
-    <div class="hero-image">
-      <img src="images/Image.png" alt="My Photo" />
-    </div>
-  </section>
-
-  <!-- About Section -->
-  <section id="about" class="about">
-    <h2>About Me</h2>
-
-    <p class="animated-paragraph">
-      I am a passionate IT undergraduate with hands-on experience in developing web-based
-      systems, mobile applications, and database-driven software solutions. I enjoy creating
-      practical applications that solve real business problems and improve daily operations.
-    </p>
-
-    <p class="animated-paragraph delay-1">
-      My project experience includes POS systems, employee management systems, mobile job
-      searching applications, programming assistance tools, and assignment-based web applications.
-      I have worked with technologies such as PHP, MySQL, Java, JavaScript, TypeScript, HTML,
-      CSS, Next.js, Tailwind CSS, and mobile application development concepts.
-    </p>
-
-    <p class="animated-paragraph delay-2">
-      I am always interested in learning new technologies, improving my development skills,
-      and building clean, user-friendly, and efficient software systems.
-    </p>
-  </section>
-
-  <!-- Skills Section -->
-  <section id="skills" class="skills">
-    <h2>My Skills</h2>
-
-    <div class="skill-list">
-      <span>HTML</span>
-      <span>CSS</span>
-      <span>JavaScript</span>
-      <span>TypeScript</span>
-      <span>PHP</span>
-      <span>MySQL</span>
-      <span>Java</span>
-      <span>Next.js</span>
-      <span>Tailwind CSS</span>
-      <span>Web Development</span>
-      <span>Mobile App Development</span>
-      <span>Database Management</span>
-      <span>POS Systems</span>
-      <span>Software Development</span>
-    </div>
-  </section>
-
-  <!-- Projects Section -->
-  <section id="projects" class="projects">
-    <h2>My Projects</h2>
-
-    <div class="project-container">
-
-      <div class="project-card">
-        <h3>ONE TOUCH Mobile POS System</h3>
-        <p>
-          A web-based POS system designed to manage mobile phone sales, repair services,
-          inventory, and daily business operations. The system supports real-time sales
-          tracking and helps simplify shop management tasks.
+        <p class="hero-paragraph">
+          I am an IT undergraduate and developer with experience in web development,
+          mobile application development, database systems, POS systems, and software projects.
         </p>
-        <div class="project-tags">
-          <span>POS System</span>
-          <span>Inventory</span>
-          <span>Web App</span>
+
+        <div class="hero-buttons">
+          <a href="projects.html" class="btn primary-btn page-link">View My Projects</a>
+          <a href="contact.html" class="btn secondary-btn page-link">Contact Me</a>
         </div>
       </div>
 
-      <div class="project-card">
-        <h3>Employee Management System</h3>
-        <p>
-          A web-based employee management system developed for the Development Lotteries Board.
-          It helps centralize employee data, streamline business processes, automate workflows,
-          and support better decision-making.
-        </p>
-        <div class="project-tags">
-          <span>PHP</span>
-          <span>MySQL</span>
-          <span>EMS</span>
-        </div>
+      <div class="hero-image reveal-right">
+        <img src="images/Image.png" alt="My Photo" />
       </div>
+    </section>
+  </main>
 
-      <div class="project-card">
-        <h3>Employee Management Java System</h3>
-        <p>
-          A Java-based employee management project created to manage employee-related records
-          and practice object-oriented programming, CRUD operations, and structured application
-          development.
-        </p>
-        <div class="project-tags">
-          <span>Java</span>
-          <span>OOP</span>
-          <span>CRUD</span>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <h3>Interactive Programming Assistance Tool</h3>
-        <p>
-          IPAT is an interactive programming assistance tool designed for instructors and
-          novice programmers. It supports learning and teaching programming concepts in a
-          more interactive way.
-        </p>
-        <div class="project-tags">
-          <span>Next.js</span>
-          <span>Tailwind CSS</span>
-          <span>Education</span>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <h3>Mobile Job Spotter Application</h3>
-        <p>
-          A mobile application project created for job seekers to search and apply for job
-          openings. The project focuses on improving the job searching experience through
-          mobile application features.
-        </p>
-        <div class="project-tags">
-          <span>Mobile App</span>
-          <span>Job Portal</span>
-          <span>MAD</span>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <h3>IWT Web Project</h3>
-        <p>
-          A web development project completed as part of academic coursework. It focuses on
-          building a front-end website using HTML, CSS, and basic web design principles.
-        </p>
-        <div class="project-tags">
-          <span>HTML</span>
-          <span>CSS</span>
-          <span>Web Design</span>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <h3>PAF Assignment Project</h3>
-        <p>
-          An academic project developed for the PAF module, focusing on practical application
-          development concepts, API handling, and software development practices.
-        </p>
-        <div class="project-tags">
-          <span>PAF</span>
-          <span>API</span>
-          <span>Assignment</span>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <h3>TypeScript PAF Project</h3>
-        <p>
-          A TypeScript-based academic project created for the PAF assignment. This project
-          helped improve practical knowledge of TypeScript and modern development structure.
-        </p>
-        <div class="project-tags">
-          <span>TypeScript</span>
-          <span>PAF</span>
-          <span>Web App</span>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <h3>ITP Group Web Project</h3>
-        <p>
-          A group-based web development project built using JavaScript. The project helped
-          improve teamwork, software planning, front-end development, and project implementation
-          skills.
-        </p>
-        <div class="project-tags">
-          <span>JavaScript</span>
-          <span>Group Project</span>
-          <span>Web App</span>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact" class="contact">
-    <h2>Contact Me</h2>
-
-    <div class="contact-box">
-      <p>Email: supunvirajith21@gmail.com</p>
-      <p>Phone: +94 76 125 8270</p>
-      <p>GitHub: https://github.com/supunvirajitha</p>
-    </div>
-  </section>
-
-  <!-- Footer -->
   <footer>
+<<<<<<< HEAD
     <p>© 2026 [SUPUN VIRAJITHA] <br> All Rights Reserved.</p>
+=======
+    <p>© 2026 [SUPUN VIRAJITHA]. All Rights Reserved.</p>
+>>>>>>> 0ba7288 (update)
   </footer>
 
+  <script src="script.js"></script>
 </body>
 </html>
