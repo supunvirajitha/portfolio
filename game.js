@@ -1,106 +1,152 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+const playerCar = document.getElementById("playerCar");
+const enemyCar = document.getElementById("enemyCar");
+const gameArea = document.getElementById("gameArea");
+const scoreText = document.getElementById("score");
+const startScreen = document.getElementById("startScreen");
+const gameOverScreen = document.getElementById("gameOver");
+const finalScoreText = document.getElementById("finalScore");
+const leftBtn = document.getElementById("leftBtn");
+const rightBtn = document.getElementById("rightBtn");
 
-  <title>Car Game | My Portfolio</title>
+let playerX = 137;
+let enemyY = -90;
+let enemyX = 137;
+let score = 0;
+let speed = 4;
+let gameRunning = false;
+let gameLoop;
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+const desktopLanes = [72, 137, 202];
+const mobileLanes = [57, 122, 187];
+const smallMobileLanes = [42, 107, 172];
 
-  <link 
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Orbitron:wght@500;600;700&display=swap" 
-    rel="stylesheet"
-  >
+function getLanes() {
+  const width = gameArea.offsetWidth;
 
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
+  if (width <= 260) {
+    return smallMobileLanes;
+  }
 
-  <div class="background-animation">
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
+  if (width <= 290) {
+    return mobileLanes;
+  }
 
-  <header>
-    <nav>
-      <h2 class="logo">My Portfolio</h2>
+  return desktopLanes;
+}
 
-      <ul class="nav-links">
-        <li><a href="./index.html">Home</a></li>
-        <li><a href="./about.html">About</a></li>
-        <li><a href="./skills.html">Skills</a></li>
-        <li><a href="./projects.html">Projects</a></li>
-        
-        <li><a href="./contact.html">Contact</a></li>
-        <li><a href="./game.html" class="active-link">Game</a></li>
-      </ul>
-    </nav>
-  </header>
+function startGame() {
+  startScreen.style.display = "none";
+  gameOverScreen.style.display = "none";
 
-  <main class="page-transition">
+  const lanes = getLanes();
 
-    <section class="page-hero">
-      <h1 class="reveal-up">Mini <span>Car Game</span></h1>
-      <p class="reveal-up">
-        A small JavaScript car game added to my portfolio project.
-      </p>
-    </section>
+  playerX = lanes[1];
+  enemyX = lanes[Math.floor(Math.random() * lanes.length)];
+  enemyY = -90;
+  score = 0;
+  speed = 4;
+  gameRunning = true;
 
-    <section class="game-section">
+  playerCar.style.left = playerX + "px";
+  enemyCar.style.left = enemyX + "px";
+  enemyCar.style.top = enemyY + "px";
+  scoreText.textContent = score;
 
-      <div class="game-info reveal-left">
-        <h2>Car Racing Game</h2>
-        <p>
-          Use the left and right arrow keys on desktop. On mobile, use the buttons below.
-          Avoid the red enemy cars and try to get the highest score.
-        </p>
-      </div>
+  clearInterval(gameLoop);
+  gameLoop = setInterval(updateGame, 20);
+}
 
-      <div class="game-wrapper reveal-right">
-        <div class="score-board">
-          Score: <span id="score">0</span>
-        </div>
+function updateGame() {
+  if (!gameRunning) return;
 
-        <div class="game-area" id="gameArea">
-          <div class="road-line line-one"></div>
-          <div class="road-line line-two"></div>
-          <div class="road-line line-three"></div>
+  enemyY += speed;
+  enemyCar.style.top = enemyY + "px";
 
-          <div class="enemy-car" id="enemyCar"></div>
-          <div class="player-car" id="playerCar"></div>
+  if (enemyY > gameArea.offsetHeight) {
+    const lanes = getLanes();
 
-          <div class="start-screen" id="startScreen">
-            <h3>Mini Car Game</h3>
-            <p>Click Start to play</p>
-            <button onclick="startGame()">Start Game</button>
-          </div>
+    enemyY = -90;
+    enemyX = lanes[Math.floor(Math.random() * lanes.length)];
+    enemyCar.style.left = enemyX + "px";
 
-          <div class="game-over" id="gameOver">
-            <h3>Game Over</h3>
-            <p>Your Score: <span id="finalScore">0</span></p>
-            <button onclick="restartGame()">Restart</button>
-          </div>
-        </div>
+    score++;
+    scoreText.textContent = score;
 
-        <div class="mobile-controls">
-          <button id="leftBtn">⬅</button>
-          <button id="rightBtn">➡</button>
-        </div>
-      </div>
+    increaseSpeedByScore();
+  }
 
-    </section>
+  checkCollision();
+}
 
-  </main>
+function increaseSpeedByScore() {
+  if (score > 0 && score % 5 === 0) {
+    speed += 1.5;
+  }
 
-  <footer>
-    <p>© 2026 Your Name. All Rights Reserved.</p>
-  </footer>
+}
 
-  <script src="script.js"></script>
-  <script src="game.js"></script>
-</body>
-</html>
+function checkCollision() {
+  const playerRect = playerCar.getBoundingClientRect();
+  const enemyRect = enemyCar.getBoundingClientRect();
+
+  const hit =
+    playerRect.left < enemyRect.right &&
+    playerRect.right > enemyRect.left &&
+    playerRect.top < enemyRect.bottom &&
+    playerRect.bottom > enemyRect.top;
+
+  if (hit) {
+    endGame();
+  }
+}
+
+function endGame() {
+  gameRunning = false;
+  clearInterval(gameLoop);
+
+  document.querySelector("#gameOver h3").textContent = "Game Over";
+  finalScoreText.textContent = score;
+  gameOverScreen.style.display = "flex";
+}
+
+function restartGame() {
+  clearInterval(gameLoop);
+  startGame();
+}
+
+function moveLeft() {
+  if (!gameRunning) return;
+
+  const lanes = getLanes();
+  const currentIndex = lanes.indexOf(playerX);
+
+  if (currentIndex > 0) {
+    playerX = lanes[currentIndex - 1];
+    playerCar.style.left = playerX + "px";
+  }
+}
+
+function moveRight() {
+  if (!gameRunning) return;
+
+  const lanes = getLanes();
+  const currentIndex = lanes.indexOf(playerX);
+
+  if (currentIndex < lanes.length - 1) {
+    playerX = lanes[currentIndex + 1];
+    playerCar.style.left = playerX + "px";
+  }
+}
+
+document.addEventListener("keydown", function (event) {
+  if (event.key === "ArrowLeft") {
+    moveLeft();
+  }
+
+  if (event.key === "ArrowRight") {
+    moveRight();
+  }
+});
+
+leftBtn.addEventListener("click", moveLeft);
+rightBtn.addEventListener("click", moveRight);
